@@ -19,6 +19,7 @@ namespace MightThinkTwice
         }
 
         public string[][] Rules;
+        public bool RuleViolated = false;
         System.Timers.Timer timer = new System.Timers.Timer();
 
 
@@ -141,8 +142,7 @@ namespace MightThinkTwice
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            //Every 5 seconds check if a rule is being violated
-            
+            //Every 5 seconds check if a rule is being violated            
             timer.Interval = 5000;
             timer.Elapsed += new System.Timers.ElapsedEventHandler(CheckRules);
             timer.Start();
@@ -184,6 +184,11 @@ namespace MightThinkTwice
                                             if (Process.GetProcessesByName(processexe.Substring(0, processexe.Length - 4)).Length == 0)
                                             {
                                                 Process.Start(subkey.GetValue("DisplayIcon").ToString());
+                                                if (RuleViolated)
+                                                {
+                                                    playOpenSound();
+                                                }
+                                                RuleViolated = true;
                                             }
                                         }
                                     }
@@ -233,6 +238,13 @@ namespace MightThinkTwice
         {
             string dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             SoundPlayer simpleSound = new SoundPlayer(dir + @"\huh-cat.wav");
+            simpleSound.Play();
+        }
+
+        private void playOpenSound()
+        {
+            string dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            SoundPlayer simpleSound = new SoundPlayer(dir + @"\not-today_1.wav");
             simpleSound.Play();
         }
     }
