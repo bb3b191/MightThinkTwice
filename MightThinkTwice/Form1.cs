@@ -9,6 +9,7 @@ namespace MightThinkTwice
     using System.Formats.Asn1;
     using System.Globalization;
     using static System.Runtime.InteropServices.JavaScript.JSType;
+    using System.Media;
 
     public partial class MightThinkTwice : Form
     {
@@ -47,16 +48,34 @@ namespace MightThinkTwice
             System.IO.StreamReader file = new System.IO.StreamReader(dir + @"\RulesList.txt");
             if (file.ReadLine() != null)
             {
-                foreach (var line in file.ReadToEnd().Split('\n'))
+                //string[] test = file.ReadAllText().Split('\n');
+                string[] test = File.ReadAllLines(dir + @"\RulesList.txt");
+                
+
+                //foreach (var line in file.ReadToEnd().Split('\n'))
+                foreach (var line in test)
                 {
                     Rules[lbxRules.Items.Count][0] = line.Split(',')[0];
                     Rules[lbxRules.Items.Count][1] = line.Split(',')[1];
                     Rules[lbxRules.Items.Count][2] = line.Split(',')[2];
                     Rules[lbxRules.Items.Count][3] = line.Split(',')[3];
                     lbxRules.Items.Add(line);
+
+                    if (test.Length > Rules.GetLength(0))
+                    {
+                        string[][] b = new string[Rules.GetLength(0) + 1][];
+                        for (int i = 0; i < Rules.Length; i++)
+                        {
+                            b[i] = Rules[i];
+                        }
+                        b[b.Length - 1] = new string[4];
+                        Rules = b;
+                    }
+                    
                 }
             }
             file.Close();
+            lbxRules.Sorted = true;
 
 
             //Add Time to ListBox
@@ -196,6 +215,7 @@ namespace MightThinkTwice
                                             {
                                                 foreach (var process in Process.GetProcessesByName(processexe.Substring(0, processexe.Length - 4)))
                                                 {
+                                                    playQuitSound();
                                                     process.Kill();
                                                 }
                                             }
@@ -207,6 +227,13 @@ namespace MightThinkTwice
                     }
                 }
             }
+        }
+
+        private void playQuitSound()
+        {
+            string dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            SoundPlayer simpleSound = new SoundPlayer(dir + @"\huh-cat.mp3");
+            simpleSound.Play();
         }
     }
 }

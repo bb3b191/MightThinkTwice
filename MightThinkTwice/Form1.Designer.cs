@@ -71,6 +71,7 @@
             lbxProgams.Location = new Point(44, 43);
             lbxProgams.Name = "lbxProgams";
             lbxProgams.Size = new Size(250, 199);
+            lbxProgams.Sorted = true;
             lbxProgams.TabIndex = 2;
             // 
             // btnAdd
