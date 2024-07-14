@@ -112,10 +112,10 @@ namespace MightThinkTwice
             }
             b[b.Length - 1] = new string[4];
             Rules = b;
-            Rules[lbxRules.Items.Count][0] = lbxProgams.SelectedItem.ToString();
-            Rules[lbxRules.Items.Count][1] = (rbtnUse.Checked ? "Use" : "Restrict");
-            Rules[lbxRules.Items.Count][2] = lbxStartTime.SelectedItem.ToString();
-            Rules[lbxRules.Items.Count][3] = lbxEndTime.SelectedItem.ToString();
+            Rules[lbxRules.Items.Count-1][0] = lbxProgams.SelectedItem.ToString();
+            Rules[lbxRules.Items.Count-1][1] = (rbtnUse.Checked ? "Use" : "Restrict");
+            Rules[lbxRules.Items.Count-1][2] = lbxStartTime.SelectedItem.ToString();
+            Rules[lbxRules.Items.Count-1][3] = lbxEndTime.SelectedItem.ToString();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -125,7 +125,7 @@ namespace MightThinkTwice
             string[][] b = new string[Rules.GetLength(0) - 1][];
             for (int i = 0; i < Rules.Length; i++)
             {
-                if (i == lbxRules.SelectedIndex + 1)
+                if (i == lbxRules.SelectedIndex)
                 {
                     j = -1;
                     continue;
@@ -232,7 +232,7 @@ namespace MightThinkTwice
         private void playQuitSound()
         {
             string dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            SoundPlayer simpleSound = new SoundPlayer(dir + @"\huh-cat.mp3");
+            SoundPlayer simpleSound = new SoundPlayer(dir + @"\huh-cat.wav");
             simpleSound.Play();
         }
     }
