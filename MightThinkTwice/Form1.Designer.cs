@@ -62,14 +62,15 @@
             btnStop.TabIndex = 1;
             btnStop.Text = "Stop";
             btnStop.UseVisualStyleBackColor = true;
+            btnStop.Click += btnStop_Click;
             // 
             // lbxProgams
             // 
             lbxProgams.FormattingEnabled = true;
             lbxProgams.ItemHeight = 15;
-            lbxProgams.Location = new Point(44, 122);
+            lbxProgams.Location = new Point(44, 43);
             lbxProgams.Name = "lbxProgams";
-            lbxProgams.Size = new Size(250, 49);
+            lbxProgams.Size = new Size(250, 199);
             lbxProgams.TabIndex = 2;
             // 
             // btnAdd
@@ -137,7 +138,7 @@
             lbxStartTime.ItemHeight = 15;
             lbxStartTime.Location = new Point(440, 126);
             lbxStartTime.Name = "lbxStartTime";
-            lbxStartTime.Size = new Size(93, 49);
+            lbxStartTime.Size = new Size(95, 139);
             lbxStartTime.TabIndex = 9;
             // 
             // lbxEndTime
@@ -146,21 +147,21 @@
             lbxEndTime.ItemHeight = 15;
             lbxEndTime.Location = new Point(556, 126);
             lbxEndTime.Name = "lbxEndTime";
-            lbxEndTime.Size = new Size(93, 49);
+            lbxEndTime.Size = new Size(93, 139);
             lbxEndTime.TabIndex = 10;
             // 
             // lbxRules
             // 
             lbxRules.FormattingEnabled = true;
             lbxRules.ItemHeight = 15;
-            lbxRules.Location = new Point(44, 197);
+            lbxRules.Location = new Point(44, 267);
             lbxRules.Name = "lbxRules";
             lbxRules.Size = new Size(250, 49);
             lbxRules.TabIndex = 11;
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(325, 218);
+            btnDelete.Location = new Point(325, 288);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(75, 23);
             btnDelete.TabIndex = 12;
